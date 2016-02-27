@@ -4,7 +4,6 @@
 	var User = module.parent.require('./user'),
 		meta = module.parent.require('./meta'),
 		db = module.parent.require('../src/database'),
-		password = module.parent.require('../src/password'),
 		passport = module.parent.require('passport'),
   		passportLDAP = require('passport-ldapauth'),
   		fs = module.parent.require('fs'),
@@ -35,8 +34,8 @@
 
 	Ldap.overrideAuth = function() {
 		meta.settings.get('ldap', function(err, settings) {
-			if (!err && settings['server'] && settings['username']
-                && settings['secret'] && settings['base'] && settings['filter']) {
+			if (!err && settings['server']
+                && settings['base'] && settings['filter']) {
 				passport.use(new passportLDAP({
                     server: {
                         url: settings['server'],
@@ -44,22 +43,14 @@
                         bindCredentials: settings['secret'],
                         searchBase: settings['base'],
                         searchFilter: "(uid={{username}})",
-                    },
-                    passReqToCallback: true
-				}, function( req, userData, done) {
-                    password.compare(req.body['password'], userData.userPassword, function() {
-
-                        if( err  ){
-                            return done(err);
-                        }
-
-                        Ldap.login(userData.uid, userData.givenName, "test@163.com", function(err, user) {
-					    	if (err) {
-						    	return done(err);
-						    }
-						    return done(null, user);
-					    });
-                    });
+                    }
+				}, function( userData, done) {
+                    Ldap.login(userData.uid, userData.givenName, "test@163.com", function(err, user) {
+				       	if (err) {
+					    	return done(err);
+					    }
+					    return done(null, user);
+				    });
 				}));
 	        };
 	    });
