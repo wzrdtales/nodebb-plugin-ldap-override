@@ -35,7 +35,7 @@
 	Ldap.overrideAuth = function() {
 		meta.settings.get('ldap', function(err, settings) {
 			if (!err && settings['server']
-                && settings['base'] && settings['filter']) {
+                && settings['filter']) {
 				passport.use(new passportLDAP({
                     server: {
                         url: settings['server'],
@@ -45,7 +45,7 @@
                         searchFilter: "(uid={{username}})",
                     }
 				}, function( userData, done) {
-                    Ldap.login(userData.uid, userData.givenName, "test@163.com", function(err, user) {
+                    Ldap.login(userData.uid, userData, function(err, user) {
 				       	if (err) {
 					    	return done(err);
 					    }
@@ -56,7 +56,7 @@
 	    });
 	};
 
-	Ldap.login = function(ldapid, handle, email, callback) {
+	Ldap.login = function(ldapid, userData, callback) {
 		Ldap.getUidByLdapId(ldapid, function(err, uid) {
 			if(err) {
 				return callback(err);
@@ -78,7 +78,7 @@
 				// New User
 
                 /* Add to own database */
-				User.create({username: handle, email: email}, function(err, uid) {
+				User.create({username: userData.cn, email: userData.mail}, function(err, uid) {
 					if(err) {
 						return callback(err);
 					}

@@ -24,7 +24,7 @@
   "readme": "",
   "readmeFilename": "README.md",
   "dependencies": {
-    "passport-ldapauth": "1.1.2"
+    "passport-ldapauth": "0.4.0"
   },
   "nbbpm": {
     "compatibility": "^1.0.0"
