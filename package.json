@@ -1,0 +1,32 @@
+{
+  "name": "nodebb-plugin-ldap",
+  "version": "0.0.1",
+  "description": "NodeBB LDAP",
+  "main": "library.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wineternity/nodebb-plugin-ldap"
+  },
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "ldap",
+    "registration"
+  ],
+  "author": {
+    "name": "wineternity",
+    "email": "dawnyym@163.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wineternity/nodebb-plugin-ldap/issues"
+  },
+  "readme": "",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "passport-ldapauth": "1.1.2"
+  },
+  "nbbpm": {
+    "compatibility": "^1.0.0"
+  }
+}

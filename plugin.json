@@ -1,0 +1,15 @@
+{
+	"id": "nodebb-plugin-ldap",
+	"name": "NodeBB LDAP",
+	"description": "NodeBB Plugin that allows users to login via their LDAP account.",
+	"url": "https://github.com/wineternity/nodebb-plugin-ldap",
+	"library": "./library.js",
+	"templates": "templates",
+	"hooks": [
+		{ "hook": "static:app.load", "method": "init" },
+		{ "hook": "action:auth.overrideLogin", "method": "overrideAuth" }
+	],
+	"acpScripts": [
+		"static/lib/admin.js"
+	]
+}
