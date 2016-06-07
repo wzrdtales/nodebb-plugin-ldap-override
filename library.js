@@ -3,13 +3,15 @@
 
 	var User = module.parent.require('./user'),
 		meta = module.parent.require('./meta'),
-		db = module.parent.require('../src/database'),
+		db = module.parent.require('./database'),
 		passport = module.parent.require('passport'),
+		PassportLocal = module.parent.require('passport-local').Strategy,
   		passportLDAP = require('passport-ldapauth'),
   		fs = module.parent.require('fs'),
   		path = module.parent.require('path'),
   		nconf = module.parent.require('nconf'),
         async = module.parent.require('async');
+
 
 	var constants = Object.freeze({
 		'name': "LDAP Account",
@@ -36,13 +38,13 @@
 		meta.settings.get('ldap', function(err, settings) {
 			if (!err && settings['server']
                 && settings['filter']) {
-				passport.use(new passportLDAP({
+		var passportLD = new passportLDAP({
                     server: {
                         url: settings['server'],
                         bindDn: settings['username'],
                         bindCredentials: settings['secret'],
                         searchBase: settings['base'],
-                        searchFilter: "(uid={{username}})",
+                        searchFilter: "(sAMAccountName={{username}})",
                     }
 				}, function( userData, done) {
                     Ldap.login(userData.uid, userData, function(err, user) {
@@ -51,7 +53,10 @@
 					    }
 					    return done(null, user);
 				    });
-				}));
+				});
+
+                passportLD.name = 'local';
+                passport.use(passportLD);
 	        };
 	    });
 	};

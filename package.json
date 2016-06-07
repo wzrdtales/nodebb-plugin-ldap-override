@@ -1,11 +1,11 @@
 {
   "name": "nodebb-plugin-ldap",
   "version": "0.0.1",
-  "description": "NodeBB LDAP",
+  "description": "NodeBB LDAP Login override",
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wineternity/nodebb-plugin-ldap"
+    "url": "https://github.com/wzrdtales/nodebb-plugin-ldap-override"
   },
   "keywords": [
     "nodebb",
@@ -14,12 +14,12 @@
     "registration"
   ],
   "author": {
-    "name": "wineternity",
-    "email": "dawnyym@163.com"
+    "name": "Tobias Gurtzick",
+    "email": "magic@wizardtales.com"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wineternity/nodebb-plugin-ldap/issues"
+    "url": "https://github.com/wzrdtales/nodebb-plugin-ldap-override/issues"
   },
   "readme": "",
   "readmeFilename": "README.md",
