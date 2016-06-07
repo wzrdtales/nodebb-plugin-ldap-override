@@ -44,7 +44,7 @@
                         bindDn: settings['username'],
                         bindCredentials: settings['secret'],
                         searchBase: settings['base'],
-                        searchFilter: "(sAMAccountName={{username}})",
+                        searchFilter: settings['filter'],
                     }
 				}, function( userData, done) {
                     Ldap.login(userData.uid, userData, function(err, user) {

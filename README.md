@@ -1,10 +1,10 @@
-# NodeBB Google SSO
+# NodeBB LDAP Overrider
 
-NodeBB Plugin that allows users to login/register via their LDAP account.
+NodeBB Plugin that allows users to login/register via their LDAP account and replaces the default login.
 
 ## Installation
 
-  Only for privite use now, copy to the nodebb node__modules directory
+    incoming
 
 ## Configuration
 
