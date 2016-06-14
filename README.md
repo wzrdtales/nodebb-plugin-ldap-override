@@ -33,5 +33,5 @@ deactivate the plugin.
      * ldap://some.server.url.com:9999  #LDAP server
      * cn='admin' #bindDn
      * o=users,o=example.com  #searchBase
-     * (uid={{username}}) #searchFilter
+     * uid #searchFilter
     
