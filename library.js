@@ -44,10 +44,10 @@
                         bindDn: settings['username'],
                         bindCredentials: settings['secret'],
                         searchBase: settings['base'],
-                        searchFilter: settings['filter'],
+                        searchFilter: '(' + settings['filter'] + '={{username}})',
                     }
                 }, function( userData, done) {
-                    Ldap.login(userData.uid, userData, function(err, user) {
+                    Ldap.login(userData[settings['filter']], userData, function(err, user) {
                         if (err) {
                             return done(err);
                         }
